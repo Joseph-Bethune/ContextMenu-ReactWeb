@@ -1,5 +1,5 @@
 # Description
-This "package" contains 3 files (2 .jsx and 1 .css) that will allow an easy to use and setup right-click context menu in any react web project.
+This "package" contains 3 files (2 .jsx and 1 .css) that will allow an easy to setup and use right-click context menu in any react web project.
 
 # Setup
 In order to use the context menu in a project, follow the instructions below.

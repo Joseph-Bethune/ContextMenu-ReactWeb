@@ -1,3 +1,6 @@
+# Description
+This "package" contains 3 files (2 .jsx and 1 .css) that will allow an easy to use and setup right-click context menu in any react web project.
+
 # Setup
 In order to use the context menu in a project, follow the instructions below.
 
@@ -7,10 +10,11 @@ In order to use the context menu in a project, follow the instructions below.
     - Try to place this as high in the component hiearchy as possible to ensure that any subcomponents have access to the reference.
 
 3. Create a reference hook and give it to the context menu parent component.
+
 4. Render the component.
 
-After this initial setup, the programmer need only call the openContextMenuDelegate() method on an instance of the contextMenuParent reference hook object in order to open the context menu.
-- You will need to to give this method information on what to put inside of the context menu. More on that later
+After this initial setup, the programmer needs only call the openContextMenuDelegate() method on an instance of the contextMenuParent reference in order to open the context menu.
+- You will need to to give this method information on what to put inside of the context menu. MOre on that later.
 
 ## Setup the context menu in the parent component
 ### Import statement
@@ -22,6 +26,7 @@ import ContextMenuParent from '{Context menu directory}';
 ```
 
 ### Create reference hook and apply it to the context menu parent component
+The following code excerpt needs to be placed inside of the parent raect component.
 ```
 //#region context menu
 
@@ -36,6 +41,7 @@ const renderContextMenu = () => {
 //#endregion
 ```
 ### Call rendering method
+The following code excerpt also needs to be placed inside of the parent react component.
 ```
 return (
     <div>
@@ -55,9 +61,9 @@ In order to function, the openContextMenuDelagate() function will need to be pas
 contextMenuParentRef.current.openContextMenuDelegate(menuData);
 ```
 # Context Menu Data
-The context menu can be customized, but it will need to receive data about what to display (and where) in a specific format.
+The context menu can be customized, but it will need to receive data about what to display (and where) in a specific format. This is the "context menu data".
 ## Context Menu Item Types
-All context menu items must have a type value and for it to be set to one of the values below.
+All context menu items must have a "type" value and for it to be set to one of the values below.
 
 The constant below is exported from the ContextMenu.jsx file. Import it into any component that needs to define a ContextMenuData object.
 ```
@@ -113,3 +119,10 @@ contextMenuParentRef.current.openContextMenuDelegate(menuData);
 The menu is programmed to close automatically when the user performs a normal click on any location on the window that is not inside the context menu, or if they open another context menu.
 
 The code controlling this behaviour is stored inside the ContextMenuParent.jsx file.
+
+# Afterword
+This context menu "package" is comprised of 3 files, 2 of which dont "*need*" to be modified in order to function. 
+
+The .css file can (and probably should) be modified to suite the programmer's project, but the .jsx files are designed to do their job as they are.
+
+This is, of course, only a suggestion.

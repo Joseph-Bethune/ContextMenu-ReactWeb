@@ -1,0 +1,42 @@
+.contextMenu {
+    background-color: black;
+    position: fixed;
+    z-index: 5;
+    color: white;
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid white;
+    font-size: .875rem;
+    width: 100%;
+    max-width: 200px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
+}
+
+.contextMenu.active {
+    visibility: visible;
+    opacity: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.contextMenu.inactive {
+    visibility: hidden;
+    opacity: 0;
+}
+
+.contextMenu>hr {
+    width: 100%;
+    padding: 0;
+    margin: .5rem 0 .5rem 0;
+}
+
+.contextMenu>.contextMenuButton {
+    margin: .1rem 0 .1rem 0;
+    font-size: .9rem;
+    padding: .1rem .1rem .1rem .1rem;
+}
+
+.contextMenu>.contextMenuLabel {
+    font-size: .9rem;
+    text-align: center;
+}

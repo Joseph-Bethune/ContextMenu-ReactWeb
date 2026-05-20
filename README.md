@@ -9,8 +9,8 @@ In order to use the context menu in a project, follow the instructions below.
 3. Create a reference hook and give it to the context menu parent component.
 4. Render the component.
 
-After this initial setup, the user needs only call the openContextMenuDelegate() method on an instance of the contextMenuParent reference in order to open the context menu.
-- You will need to to give this method information on what to put inside of the context menu.
+After this initial setup, the programmer need only call the openContextMenuDelegate() method on an instance of the contextMenuParent reference hook object in order to open the context menu.
+- You will need to to give this method information on what to put inside of the context menu. More on that later
 
 ## Setup the context menu in the parent component
 ### Import statement

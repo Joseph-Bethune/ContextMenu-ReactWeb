@@ -71,8 +71,8 @@ const ContextMenuParent = forwardRef((props, ref) => {
     }
 
     const removeContextMenuEventListeners = () => {
-        document.removeEventListener("click", closeContextMenuNormalClickEventHandler);
-        document.removeEventListener("contextmenu", closeContextMenuContextClickEventHandler);
+        window.removeEventListener("click", closeContextMenuNormalClickEventHandler);
+        window.removeEventListener("contextmenu", closeContextMenuContextClickEventHandler);
     }
 
     //#endregion  
@@ -81,7 +81,7 @@ const ContextMenuParent = forwardRef((props, ref) => {
         return () => {
             closeContextMenu();
         }
-    });
+    }, []);
 
     return (
         <ContextMenu

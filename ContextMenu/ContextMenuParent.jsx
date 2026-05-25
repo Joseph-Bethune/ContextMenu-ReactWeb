@@ -20,14 +20,22 @@ const ContextMenuParent = forwardRef((props, ref) => {
 
     useImperativeHandle(ref, () => ({
         openContextMenuDelegate(menuData) {
+            // click position calculations
+            let offset = { x: 0, y: 0 };
+            if (menuData.clickEvent?.target?.offsetParent != null) {
+                const rect = menuData.clickEvent.target.offsetParent.getBoundingClientRect();
+                offset = { x: rect.x, y: rect.y }
+            }
+            const clickPosition = { x: menuData.clickEvent.clientX - offset.x, y: menuData.clickEvent.clientY - offset.y };
+
             // position data
             // offsets the context menu to the left or right by its width if the click position is on the right half of the screen
             const contextMenuAttr = contextMenuRef.current.getBoundingClientRect();
-            const triggerOffsetX = menuData.clickPosition.x >= window?.innerWidth / 2;
+            const triggerOffsetX = clickPosition.x >= window?.innerWidth / 2;
 
             const position = {
-                x: triggerOffsetX ? menuData.clickPosition.x - contextMenuAttr.width : menuData.clickPosition.x,
-                y: menuData.clickPosition.y,
+                x: triggerOffsetX ? clickPosition.x - contextMenuAttr.width : clickPosition.x,
+                y: clickPosition.y,
             };
 
             setContextMenuData({

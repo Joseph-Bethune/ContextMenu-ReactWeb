@@ -18,15 +18,15 @@ After this initial setup, the programmer needs only call the openContextMenuDele
 
 ## Setup the context menu in the parent component
 ### Import statement
-Choose a react compnent to render the context menu. This compnent doesn't need to be at the top of the component hierarchy, but it will need to be above any components that will need to use the context menu.
+Choose a react compnent to render the context menu. This compnent doesn't need to be at the top of the component hierarchy, but it will need to be above any components that will wish to use the context menu.
 
 The following code will need to be modified to point to where-ever you saved the ContextMenuParent.jsx file. Notice that this uses the ContextMenuParent and not the ContextMenu: this is important. 
 ```
-import ContextMenuParent from '{Context Menu Parent file path}';
+import ContextMenuParent from '{Context menu directory}';
 ```
 
 ### Create reference hook and apply it to the context menu parent component
-The following code excerpt needs to be placed inside of the parent react component.
+The following code excerpt needs to be placed inside of the parent raect component.
 ```
 //#region context menu
 
@@ -65,9 +65,7 @@ The context menu can be customized, but it will need to receive data about what 
 ## Context Menu Item Types
 All context menu items must have a "type" value and for it to be set to one of the values below.
 
-The constant below is exported from the ContextMenu.jsx file. 
-
-Import it into any component that needs to define a ContextMenuData object.
+The constant below is exported from the ContextMenu.jsx file. Import it into any component that needs to define a ContextMenuData object.
 ```
 export const MenuItemTypes = {
     spacer: 0,
@@ -89,12 +87,12 @@ Below is an array of context menu items.
 
 They are wrapped inside of the context menu data object that is then given to the openContextMenuDelegate() functin call.
 
-Notice that, in addition to the context menu items, the context menu data object also includes click position information. This inclusion needed to determine where the menu will be drawn.
+Notice that, in addition to the context menu items, the context menu data object also includes the mouse click event. This inclusion is needed to determine where the menu will be drawn.
 ```
-const contextClickHandler = (event) => {
+const contextClickHandler = (clickEvent) => {
     const menuItems = [
         {
-            text: `Button 1`,
+            text: `${targetData.displayName}`,
             onClick: () => null,
             itemType: MenuItemTypes.label,
         },
@@ -104,30 +102,19 @@ const contextClickHandler = (event) => {
             itemType: MenuItemTypes.spacer,
         },
         {
-            text: `Button 2`,
-            onClick: () => null,
+            text: `Go to profile page`,
+            onClick: () => { navigate(`/user/?name=${targetData.displayName}`); },
             itemType: MenuItemTypes.button,
         },
     ];
-    
+
     const menuData = {
-        clickPosition: { x: event.clientX, y: event.clientY },
+        clickEvent: clickEvent,
         menuItems,
     };
-    
+
     contextMenuParentRef.current.openContextMenuDelegate(menuData);
 }
-```
-Below is the rendered object that implements the context menu's right click handler described above.
-```
-return (
-    <div
-        onContextMenu={(event) => contextClickHandler(event)}
-    >
-        {"Right Click Me"}
-    </div>
-)
-
 ```
 
 # Closing the Menu
